@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h1>Welcome to your Dashboard</h1>
+
+    <% if (posts.length > 0) { %>
+      <h2>Your Blog Posts:</h2>
+      <ul>
+        <% posts.forEach((post) => { %>
+          <li><a href="/posts/<%= post._id %>"><%= post.title %></a></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No blog posts yet.</p>
+    <% } %>
+
+    <a href="/posts/new">Add New Blog Post</a>
+
+    <nav>
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <% if (user) { %>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </nav>
+  </body>
+</html>

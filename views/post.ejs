@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog Post</title>
+  </head>
+  <body>
+    <h1><%= post.title %></h1>
+    <p><%= post.content %></p>
+    <p>Author: <%= post.author %></p>
+    <p>Created At: <%= post.createdAt %></p>
+
+    <h2>Comments:</h2>
+    <% if (post.comments.length > 0) { %>
+      <ul>
+        <% post.comments.forEach((comment) => { %>
+          <li><%= comment.content %> - <%= comment.author %> - <%= comment.createdAt %></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No comments yet.</p>
+    <% } %>
+
+    <% if (user) { %>
+      <form method="POST" action="/posts/<%= post._id %>/comments">
+        <label for="comment">Leave a comment:</label>
+        <input type="text" id="comment" name="comment" required>
+        <button type="submit">Submit</button>
+      </form>
+    <% } else { %>
+      <p>Please <a href="/login">login</a> to leave a comment.</p>
+    <% } %>
+
+    <nav>
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <% if (user) { %>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </nav>
+  </body>
+</html>

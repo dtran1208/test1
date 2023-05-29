@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog Site</title>
+  </head>
+  <body>
+    <h1>Welcome to the Blog Site</h1>
+
+    <% if (posts.length > 0) { %>
+      <h2>Recent Blog Posts:</h2>
+      <ul>
+        <% posts.forEach((post) => { %>
+          <li><a href="/posts/<%= post._id %>"><%= post.title %></a> - <%= post.createdAt %></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No blog posts yet.</p>
+    <% } %>
+
+    <nav>
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <% if (user) { %>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </nav>
+  </body>
+</html>
